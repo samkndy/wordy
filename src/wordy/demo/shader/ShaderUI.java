@@ -35,11 +35,16 @@ public class ShaderUI {
 
     public static void main(String[] args) throws Exception {
         new ShaderUI(
-            "ripples.wordy",  // Simple test involving only assignments and expressions
-//            "mandel.wordy",   // More complex test involving loops and conditionals
+//            "ripples.wordy",  // Simple test involving only assignments and expressions
+            "mandel.wordy",   // More complex test involving loops and conditionals
             600, 600
         );
     }
+    /*
+    Initial Mandelbrot rendering results:
+    Interpreter: 4168ms
+    Compiler:
+     */
 
     public ShaderUI(String sourceFileName, int width, int height) throws Exception {
         program = loadProgram("/" + sourceFileName);

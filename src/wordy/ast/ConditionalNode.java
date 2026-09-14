@@ -2,6 +2,7 @@ package wordy.ast;
 
 import wordy.interpreter.EvaluationContext;
 
+import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Objects;
 
@@ -98,5 +99,27 @@ public class ConditionalNode extends StatementNode {
                 else ifFalse.run(context);
             }
         }
+    }
+
+    @Override
+    public void compile(PrintWriter out) {
+        out.print("if(");
+        lhs.compile(out);
+        switch (operator){
+            case EQUALS -> {
+                out.print(" == ");
+            }
+            case LESS_THAN -> {
+                out.print(" < ");
+            }
+            case GREATER_THAN -> {
+                out.print(" > ");
+            }
+        }
+        rhs.compile(out);
+        out.print(") ");
+        ifTrue.compile(out);
+        out.print("else ");
+        ifFalse.compile(out);
     }
 }
